@@ -12,7 +12,7 @@ int getValue(int count[],int nodigits){
 	return -2;				// -2 when all are zero
 }
 
-int fun(int num[],int temp[],int count[],int pos,int nodigits,int N){
+int fun(vector<int> num,int temp[],int count[],int pos,int nodigits,int N){
 
 	if(pos <= nodigits)
 	{
@@ -23,11 +23,15 @@ int fun(int num[],int temp[],int count[],int pos,int nodigits,int N){
 			//cout<<endl;
 			int sum =0,number=0;
 			
-			for(int i=nodigits-1; i>=0; i--){
+			/*for(int i=nodigits-1; i>=0; i--){
 				number = temp[i] * pow(10,nodigits-i-1);
 				sum = sum + number;
-			}		 
-
+			}*/		 
+			for(int i=0; i<nodigits; i++){
+				number = number * 10 + temp[i];
+				//sum = sum + number;
+			}
+			sum=number;
 			//cout<<sum<<endl;
 			if(sum%N==0){
 			cout<<sum<<endl;
@@ -51,13 +55,14 @@ int fun(int num[],int temp[],int count[],int pos,int nodigits,int N){
 
 int main(){
 	
-	//vector<int>num;
+	vector<int>num;
 	int i,N;
-	int num[10],temp[10],count[10];
+	//int num[10];
+	int temp[10],count[10];
 	int t;
 	cin>>t;
 	while(t--){
-		memset(num,0,sizeof(num));
+		//memset(num,0,sizeof(num));
 		memset(temp,0,sizeof(temp));
 		for(i=0;i<10;i++) count[i]=1;
 		/*for(i=0;i<10;i++) {cout<<num[i]<<" "; count[i]=1;}
@@ -72,13 +77,14 @@ int main(){
 		cin>>N;
 		for(i=0;i<nodigits;i++){
 			cin>>input;
-		//	num.push_back(input);
-			num[i] = input;
+			num.push_back(input);
+			//num[i] = input;
 		}
 	
-		//for(i=0;i<10;i++) cout<<num[i]<<" ";
+		//for(i=0;i<num.size();i++) cout<<num[i]<<" ";
 	
 		//cout<<endl<<"****"<<endl;
+		sort(num.begin(),num.end());
 		int d = fun(num,temp,count,0,nodigits,N);
 		if(d==-1) cout<<d; 
 	}

@@ -75,6 +75,9 @@ class Bit{
         System.out.println("BIT "+a);
     }
     
+    public Integer getValueA(Integer ind){
+        return a.get(ind);
+    }
 
 }
     
@@ -133,11 +136,52 @@ public class BIT_Tree{
         // update values in range [2,5] with 5 -> 1 based indexing
         bitForRUPQ.update(2, 5);
         bitForRUPQ.update(6, -5);
-        
+
         // point query : get value of rangeUpdatePointQuery[4] (should be incremented by 2+5)
         ind = 4; 
         System.out.println(bitForRUPQ.sum(ind) + rangeUpdatePointQuery.get(ind-1));
         bitForRUPQ.printA();
+
+
+        System.out.println();
+
+        // finding kth smallest (it supports updates so doing with fenwick tree)
+        ArrayList<Integer> findKSmallest = new ArrayList<Integer>(Arrays.asList(8,2,5,100,7,12));
+        Bit bitForQueries = new Bit(findKSmallest,findKSmallest.size());
+
+        Integer k=0;
+        Integer kthVal=k;
+        Boolean foundHere = false;
+        // current can be assigned properly using getSum(sizeOfArray) logic to largest power of 2 in the array
+        Integer current=4, retain=0 ;
+
+        // TODO: check if k is 0 and k not greater than  prefixSumofArray
+
+        while(current!=0){
+
+           Integer val = bitForQueries.getValueA(retain + current);
+           System.out.println(val);
+           if( k.equals(val) ) { foundHere=true; break; }
+           else if( k > val ){
+               retain += current;
+               k -= val;
+           }
+           current = current >> 1;
+        }
+
+        bitForQueries.printQ();
+        if( foundHere ) 
+            System.out.println(
+            //bitForQueries.getValueA(current+retain) + " " + 
+            (Integer)(current+retain));
+        else if( kthVal > bitForQueries.sum(retain) ) 
+            System.out.println(
+            //bitForQueries.sum(retain+1) + " " + 
+            ++retain);
+        else System.out.println(
+            //bitForQueries.sum(retain) + " " + 
+            retain);
+        
 
      }
 

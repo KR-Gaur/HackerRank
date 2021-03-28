@@ -59,5 +59,16 @@ public class strategyPattern {
         System.out.println("\nAgain Changed to ");
         t.setStgy(bus);
         t.mode();
+
+        /**
+         *  Initially 
+            Mode : Going via Cycle
+
+            Then Changed to
+            Mode : Going via Car
+
+            Again Changed to
+            Mode : Going via Bus
+         */
     }    
 }

@@ -23,6 +23,10 @@ class Subject {
         this.state = state;
         notifyAllObservers(); 
     }
+
+    public void removeObserver(Observer ob) {
+        observers.remove(ob);
+    }
  
 }
 
@@ -38,7 +42,13 @@ class BinaryObserver extends Observer{
     }
     
     public void update(){
+        // if(subject!=null) 
         System.out.println("Binary String: "+ Integer.toBinaryString(subject.getState()) );
+    }
+
+    public void remove(){
+        subject.removeObserver(this);
+        subject = null;
     }
 }
 
@@ -49,7 +59,13 @@ class HexObserver extends Observer{
     }
     
     public void update(){
+        // if(subject!=null)
         System.out.println("Hex String: "+ Integer.toHexString(subject.getState()));
+    }
+
+    public void remove(){
+        subject.removeObserver(this);
+        subject = null;
     }
 }
 
@@ -66,8 +82,14 @@ public class observerPattern {
         HexObserver h = new HexObserver(subjectTracked);
         h.update();
 
-        System.out.println("\n Tiggering Update... \n");
+        System.out.println("\n Tiggering Update... after changing state to 6\n");
         subjectTracked.setState(6);
+
+        h.remove();
+
+        System.out.println("\n Tiggering Update... after removing HexObserver\n");
+        subjectTracked.setState(7);
+
 
         /**
          * Binary String: 101

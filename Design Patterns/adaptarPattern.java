@@ -61,7 +61,17 @@ public class adaptarPattern {
         droneAsDuck.makeSound();
         droneAsDuck.fly();
 
+        /**
+         *  Duck being Duck below
 
+            Quack....Quack.....
+            Fly....Fly....Fly
+
+            Drone being Duck below
+
+            Rotating Rotors sound
+            Rotate Rotors......Fly
+         */
 
     
     }    

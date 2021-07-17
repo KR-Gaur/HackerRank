@@ -7,3 +7,7 @@ https://medium.com/dev-genius/your-source-code-is-public-if-you-dont-know-this-e
 
 How to prevent DDOS attacks using Rate-Limiter with solution in NodeJS
 https://betterprogramming.pub/preventing-ddos-and-brute-force-attacks-with-javascript-922c2554fad8
+
+
+How DNS Works ?
+https://www.lifewire.com/what-is-a-dns-cache-817514
